@@ -22,7 +22,6 @@ function App() {
 
   return (
     <div className="container">
-      <p>Test</p>
       <TestMap />
       {/* <div>
         <input
