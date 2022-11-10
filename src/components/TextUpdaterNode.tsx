@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import { Handle, Position } from 'reactflow';
+import { useCallback } from "react";
+import { Handle, Position } from "reactflow";
 
 const handleStyle = { left: 10 };
 
@@ -9,7 +9,7 @@ export function TextUpdaterNode({ data }) {
   }, []);
 
   return (
-    <>
+    <div style={{ backgroundColor: "#fff", padding: 10, borderRadius: 5 }}>
       <Handle type="target" position={Position.Top} />
       <div>
         <label htmlFor="text">Text:</label>
@@ -17,8 +17,18 @@ export function TextUpdaterNode({ data }) {
       </div>
       <Handle type="source" position={Position.Left} id="a-left" />
       <Handle type="source" position={Position.Bottom} id="a" />
-      <Handle type="source" position={Position.Bottom} id="b" style={handleStyle} />
-      <Handle type="source" position={Position.Bottom} id="c" style={{left: 40}} />
-    </>
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        id="b"
+        style={handleStyle}
+      />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        id="c"
+        style={{ left: 40 }}
+      />
+    </div>
   );
 }

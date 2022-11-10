@@ -1,12 +1,13 @@
 // import { useState } from "react";
 // import { invoke } from "@tauri-apps/api/tauri";
 import dynamic, { noSSR } from "next/dynamic";
+import {Test as TestMap} from "../components/Test" 
 
 function App() {
-  const TestMap = dynamic(
-    () => import("../components/Test").then((module) => module.Test),
-    { ssr: false }
-  );
+  // const TestMap = dynamic(
+  //   () => import("../components/Test").then((module) => module.Test),
+  //   { ssr: false }
+  // );
   // const [greetMsg, setGreetMsg] = useState("");
   // const [name, setName] = useState("");
 
