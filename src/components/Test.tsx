@@ -41,6 +41,10 @@ const initNodes: any = [
 // const initEdges = [{ id: '1-2', source: '1', target: '2', label: "1...*" }];
 const initEdges = [];
 
+const rfStyle = {
+  backgroundColor: '#B8CEFF',
+};
+
 export const Test = () => {
   const [nodes, setNodes] = useState(initNodes);
   const [edges, setEdges] = useState(initEdges);
@@ -70,6 +74,8 @@ export const Test = () => {
       edges={edges}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
+      fitView
+      style={rfStyle}
     >
       <Background />
       <Controls />
