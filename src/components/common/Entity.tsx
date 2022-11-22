@@ -1,7 +1,9 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import React from "react";
 import { Handle, Position } from "reactflow";
+
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 export const Entity = () => {
   return (
@@ -13,7 +15,7 @@ export const Entity = () => {
       borderRadius={1}
       minWidth={100}
     >
-      <Handle
+      {/* <Handle
         id="source-left"
         type="source"
         position={Position.Left}
@@ -36,7 +38,7 @@ export const Entity = () => {
         type="target"
         position={Position.Right}
         style={{ top: "70%", width: 5, height: 5 }}
-      />
+      /> */}
       <Box>
         <Typography
           px={1}
@@ -49,10 +51,13 @@ export const Entity = () => {
         </Typography>
         <Divider sx={{ borderColor: blue[500] }} />
       </Box>
-      <Box px={0.5} py={0.3} display="flex">
+      <Box px={0.5} py={0.3} display="flex" justifyContent="space-between" alignItems="center">
         <Typography fontSize={8} letterSpacing={0.5}>
           ID
         </Typography>
+        <IconButton color="primary" component="label" size="small">
+          <ArrowOutwardIcon sx={{fontSize: 7}} />
+        </IconButton>
       </Box>
       <Divider />
       <Box px={0.5} py={0.3} display="flex">
