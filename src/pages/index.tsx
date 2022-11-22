@@ -1,15 +1,19 @@
 // import { useState } from "react";
 // import { invoke } from "@tauri-apps/api/tauri";
 import dynamic, { noSSR } from "next/dynamic";
-import {Test as TestMap} from "../components/Test" 
-// import {SubFlow} from "../components/SubFlow" 
+// import { Test as TestMap } from "../components/Test";
+import { ERModel } from "../components/container/ERModel";
+// import {SubFlow} from "../components/SubFlow"
 
 function App() {
   // const TestMap = dynamic(
   //   () => import("../components/Test").then((module) => module.Test),
   //   { ssr: false }
   // );
-  const SubFlowCSR = dynamic(() => import("../components/SubFlow").then((m) => m.SubFlow), {ssr: false})
+  // const SubFlowCSR = dynamic(
+  //   () => import("../components/SubFlow").then((m) => m.SubFlow),
+  //   { ssr: false }
+  // );
   // const [greetMsg, setGreetMsg] = useState("");
   // const [name, setName] = useState("");
 
@@ -25,9 +29,10 @@ function App() {
 
   return (
     <div className="container">
+      <ERModel />
       {/* <TestMap /> */}
       {/* <SubFlow /> */}
-      <SubFlowCSR />
+      {/* <SubFlowCSR /> */}
       {/* <div>
         <input
           onChange={(e) => setName(e.currentTarget.value)}
