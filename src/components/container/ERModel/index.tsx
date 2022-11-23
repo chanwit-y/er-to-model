@@ -56,6 +56,7 @@ export const ERModel = () => {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
+      fitView
     >
       <Background />
       <Controls />

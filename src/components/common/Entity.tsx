@@ -1,11 +1,32 @@
-import { Box, Divider, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  IconButton,
+  Popover,
+  RadioGroup,
+  Typography,
+  Radio,
+} from "@mui/material";
 import { blue } from "@mui/material/colors";
-import React from "react";
+import { useState, MouseEvent } from "react";
 import { Handle, Position } from "reactflow";
 
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import AddLinkIcon from "@mui/icons-material/AddLink";
 
 export const Entity = () => {
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleAddLink = (event: MouseEvent<HTMLButtonElement>) =>
+    setAnchorEl(event.currentTarget);
+
+  const handleClose = () => setAnchorEl(null);
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   return (
     <Box
       py={0.5}
@@ -39,25 +60,58 @@ export const Entity = () => {
         position={Position.Right}
         style={{ top: "70%", width: 5, height: 5 }}
       /> */}
-      <Box>
-        <Typography
-          px={1}
-          py={0.4}
-          fontSize={8}
-          fontWeight={500}
-          letterSpacing={0.5}
-        >
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <Box p={1}>
+          <FormControl>
+            <FormLabel >
+              Source/Target
+            </FormLabel>
+            <RadioGroup
+              row
+            >
+              <FormControlLabel
+                value="source"
+                control={<Radio size="small" />}
+                label="Source"
+              />
+              <FormControlLabel
+                value="target"
+                control={<Radio size="small" />}
+                label="Target"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Box>
+      </Popover>
+      <Box
+        pt={0}
+        p={1}
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize={8} fontWeight={500} letterSpacing={0.5}>
           Entity Name
         </Typography>
-        <Divider sx={{ borderColor: blue[500] }} />
+
+        <IconButton size="small" onClick={handleAddLink}>
+          <AddLinkIcon sx={{ fontSize: 7 }} />
+        </IconButton>
       </Box>
-      <Box px={0.5} py={0.3} display="flex" justifyContent="space-between" alignItems="center">
+      <Divider sx={{ borderColor: blue[500] }} />
+      <Box px={0.5} py={0.3} display="flex">
         <Typography fontSize={8} letterSpacing={0.5}>
           ID
         </Typography>
-        <IconButton color="primary" component="label" size="small">
-          <ArrowOutwardIcon sx={{fontSize: 7}} />
-        </IconButton>
       </Box>
       <Divider />
       <Box px={0.5} py={0.3} display="flex">
