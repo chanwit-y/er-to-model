@@ -14,9 +14,13 @@ type EntityContextType = {
   isOpacity: boolean;
   setIsOpacity: Dispatch<SetStateAction<boolean>>;
   handles: JSX.Element[];
-  setHandles: Dispatch<SetStateAction<JSX.Element[]>>;
 };
 const EntityContext = createContext<EntityContextType>({} as EntityContextType);
+
+type HandleStatusType = {
+  index: number;
+  status: "active" | "inactive";
+};
 
 type Props = {
   children: ReactNode;
@@ -26,6 +30,9 @@ const EntityProvider = ({ children }: Props) => {
   const [isOpacity, setIsOpacity] = useState(false);
   const [handles, setHandles] = useState<JSX.Element[]>([]);
 
+  const [handleStatus, setHandleStatus] = useState<HandleStatusType[]>();
+  const preaddHandles = () => {};
+
   return (
     <EntityContext.Provider
       value={{
@@ -34,7 +41,6 @@ const EntityProvider = ({ children }: Props) => {
         isOpacity,
         setIsOpacity,
         handles,
-        setHandles,
       }}
     >
       {children}
