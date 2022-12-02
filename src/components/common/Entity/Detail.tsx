@@ -9,7 +9,7 @@ import CenterFocusStrongIcon from "@mui/icons-material/CenterFocusStrong";
 import { Handle, Position } from "reactflow";
 
 export const Detail = () => {
-  const { isOpacity } = useEntity();
+  const { isOpacity, handles } = useEntity();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleAddLink = (event: MouseEvent<HTMLButtonElement>) =>
@@ -20,20 +20,20 @@ export const Detail = () => {
   const open = Boolean(anchorEl);
   const id = open ? "popover-handle-detail" : undefined;
 
-  const handles = [
-    <Handle
-      id="source-left"
-      type="source"
-      position={Position.Left}
-      style={{ top: "40%", width: 5, height: 5 }}
-    />,
-    <Handle
-      id="target-left"
-      type="target"
-      position={Position.Left}
-      style={{ top: "70%", width: 5, height: 5 }}
-    />,
-  ];
+  // const handles = [
+  //   <Handle
+  //     id="source-left"
+  //     type="source"
+  //     position={Position.Left}
+  //     style={{ top: "40%", width: 5, height: 5 }}
+  //   />,
+  //   <Handle
+  //     id="target-left"
+  //     type="target"
+  //     position={Position.Left}
+  //     style={{ top: "70%", width: 5, height: 5 }}
+  //   />,
+  // ];
 
   return (
     <Box
