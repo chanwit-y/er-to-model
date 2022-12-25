@@ -11,21 +11,21 @@ import React, { SyntheticEvent, useCallback, useState } from "react";
 import { FormGroup } from "../FormGroup";
 import { useEntity } from "./Context";
 
-export const HandleDetail = () => {
-  const { setIsOpacity } = useEntity();
-  const [handlePosition, setHandlePosition] = useState(0);
+export const SpriteDetail = () => {
+  const { setIsOpacity, edgePositionValue, setEdgePositionValue } = useEntity();
+  // const [handlePosition, setHandlePosition] = useState(0);
 
   const handleChangePosition = useCallback(
     (_: Event, value: number | number[], _2: number) => {
       setIsOpacity(true);
-      setHandlePosition(value as number);
+      setEdgePositionValue(value as number);
     },
-    [handlePosition]
+    [edgePositionValue]
   );
 
   const handleCommitedPosition = useCallback(
     (_: SyntheticEvent | Event, _2: number | number[]) => setIsOpacity(false),
-    [handlePosition]
+    [edgePositionValue]
   );
 
   return (
@@ -53,7 +53,7 @@ export const HandleDetail = () => {
         <Slider
           size="small"
           defaultValue={0}
-          value={handlePosition}
+          value={edgePositionValue}
           aria-label="Small"
           valueLabelDisplay="auto"
           onChange={handleChangePosition}
