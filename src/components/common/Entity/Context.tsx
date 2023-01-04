@@ -20,7 +20,6 @@ type EntityContextType = {
 
   onPopoverClick: OnPopoverClickType;
 
-  // isOpacity: boolean;
   setIsOpacity: Dispatch<SetStateAction<boolean>>;
   sprites: JSX.Element[];
 };
@@ -39,11 +38,6 @@ const EntityProvider = ({ children }: Props) => {
   const [isOpacity, setIsOpacity] = useState(false);
   const [sprites, setSprites] = useState<JSX.Element[]>([]);
 
-  const [handleStatus, setHandleStatus] = useState<HandleStatusType[]>();
-  const preaddHandles = useCallback(() => {
-
-  }, []);
-
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | HTMLDivElement | null>(null);
   const [popoverChildren, setPopoverChildren] = useState<ReactNode>()
 
@@ -61,7 +55,6 @@ const EntityProvider = ({ children }: Props) => {
       value={{
         edgePositionValue,
         setEdgePositionValue,
-        // isOpacity,
         setIsOpacity,
         sprites,
         onPopoverClick,

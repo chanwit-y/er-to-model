@@ -10,7 +10,7 @@ import { Handle, Position } from "reactflow";
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
-import { Option } from "./Option";
+import { Toolbox } from "./Toolbox";
 
 export const Detail = () => {
   const {  sprites: handles, edgePositionValue, onPopoverClick } = useEntity();
@@ -90,7 +90,7 @@ export const Detail = () => {
           Entity Name
         </Typography>
 
-        <Box component="span" onClick={(e) => {onPopoverClick(e, <Option />)}}>
+        <Box component="span" onClick={(e) => {onPopoverClick(e, <Toolbox />)}}>
           <MoreVertIcon sx={{ fontSize: 7 }} />
         </Box>
       </Box>

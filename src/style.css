@@ -55,7 +55,7 @@ h1 {
   text-align: center;
 }
 
-input,
+/* input,
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -75,7 +75,7 @@ button {
 
 button:hover {
   border-color: #396cd8;
-}
+} */
 
 input,
 button {
