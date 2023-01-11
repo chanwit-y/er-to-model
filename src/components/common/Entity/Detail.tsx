@@ -39,7 +39,9 @@ export const Detail = () => {
           backgroundColor: "#2096f3",
          }}
         onDoubleClick={(e) => onPopoverClick(e, <SpriteDetail />)}
-      />
+      >
+        <Box position="relative" fontSize={6} sx={{transform: "translate(8px, -50%)"}}>{'M'}</Box>
+      </Handle>
       {/* <Handle
 	      id="source-left"
 	      type="source"

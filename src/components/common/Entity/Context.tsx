@@ -10,6 +10,7 @@ import {
   useState,
   MouseEvent,
   useMemo,
+  useEffect,
 } from "react";
 
 type OnPopoverClickType = (event: MouseEvent<HTMLButtonElement | HTMLDivElement | HTMLSpanElement>, children: JSX.Element) => void;
@@ -49,6 +50,10 @@ const EntityProvider = ({ children }: Props) => {
   const handlePopoverClose = useCallback(() => setAnchorEl(null), [setAnchorEl]);
   const popOverOpen = useMemo(() => Boolean(anchorEl), [anchorEl]);
   const popOverId = useMemo(() => popOverOpen ? "popover-handle" : undefined, [popOverOpen]);
+
+  // useEffect(() => {
+  //   console.log(anchorEl)
+  // }, [anchorEl])
 
   return (
     <EntityContext.Provider
