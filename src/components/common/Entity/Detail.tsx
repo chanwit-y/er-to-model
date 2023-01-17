@@ -11,9 +11,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import { Toolbox } from "./Toolbox";
+import { Sprite } from "./Sprite";
 
 export const Detail = () => {
-  const {  sprites: handles, edgePositionValue, onPopoverClick } = useEntity();
+  const { sprites, edgePositionValue, onPopoverClick } = useEntity();
 
   return (
     <Box
@@ -23,8 +24,43 @@ export const Detail = () => {
       borderRadius={1}
       minWidth={100}
     >
-      {handles.map((h) => h)}
+      {/* {sprites.map((s) => <Sprite {...s} />)} */}
+      {/* {handles.map((h) => h)} */}
+      {sprites.map((s) => <Handle
+        id={s.id}
+        type={s.type}
+        position={s.position}
+        style={{ 
+          top: `${s.edgePositionValue}%`, 
+          width: ".1rem", 
+          height: ".1rem", 
+          border: 1, 
+          borderColor: 'red', 
+          borderStyle: "solid", 
+          backgroundColor: "#2096f3",
+         }}
+        onDoubleClick={(e) => onPopoverClick(e, <SpriteDetail />)}
+      >
+        <Box position="relative" fontSize={6} sx={{transform: "translate(8px, -50%)"}}>{s.label}</Box>
+      </Handle>)}
 
+      {/* <Handle
+        id="target-right"
+        type="target"
+        position={Position.Top}
+        style={{ 
+          top: `${edgePositionValue}%`, 
+          width: ".1rem", 
+          height: ".1rem", 
+          border: 1, 
+          borderColor: 'red', 
+          borderStyle: "solid", 
+          backgroundColor: "#2096f3",
+         }}
+        onDoubleClick={(e) => onPopoverClick(e, <SpriteDetail />)}
+      >
+        <Box position="relative" fontSize={6} sx={{transform: "translate(8px, -50%)"}}>{'M'}</Box>
+      </Handle>
       <Handle
         id="source-right"
         type="source"
@@ -41,7 +77,7 @@ export const Detail = () => {
         onDoubleClick={(e) => onPopoverClick(e, <SpriteDetail />)}
       >
         <Box position="relative" fontSize={6} sx={{transform: "translate(8px, -50%)"}}>{'M'}</Box>
-      </Handle>
+      </Handle> */}
       {/* <Handle
 	      id="source-left"
 	      type="source"
@@ -92,7 +128,7 @@ export const Detail = () => {
           Entity Name
         </Typography>
 
-        <Box component="span" onClick={(e) => {onPopoverClick(e, <Toolbox />)}}>
+        <Box component="span" onClick={(e) => { onPopoverClick(e, <Toolbox />) }}>
           <MoreVertIcon sx={{ fontSize: 7 }} />
         </Box>
       </Box>

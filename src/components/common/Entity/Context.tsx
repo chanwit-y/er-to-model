@@ -12,6 +12,8 @@ import {
   useMemo,
   useEffect,
 } from "react";
+import {  Position } from "reactflow";
+import { SpriteType } from "./@types";
 
 type OnPopoverClickType = (event: MouseEvent<HTMLButtonElement | HTMLDivElement | HTMLSpanElement>, children: JSX.Element) => void;
 
@@ -22,7 +24,8 @@ type EntityContextType = {
   onPopoverClick: OnPopoverClickType;
 
   setIsOpacity: Dispatch<SetStateAction<boolean>>;
-  sprites: JSX.Element[];
+  sprites: SpriteType[];
+  setSprites: Dispatch<SetStateAction<SpriteType[]>>;
 };
 const EntityContext = createContext<EntityContextType>({} as EntityContextType);
 
@@ -37,7 +40,7 @@ type Props = {
 const EntityProvider = ({ children }: Props) => {
   const [edgePositionValue, setEdgePositionValue] = useState(0);
   const [isOpacity, setIsOpacity] = useState(false);
-  const [sprites, setSprites] = useState<JSX.Element[]>([]);
+  const [sprites, setSprites] = useState<SpriteType[]>([]);
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | HTMLDivElement | null>(null);
   const [popoverChildren, setPopoverChildren] = useState<ReactNode>()
@@ -55,6 +58,25 @@ const EntityProvider = ({ children }: Props) => {
   //   console.log(anchorEl)
   // }, [anchorEl])
 
+  useEffect(() => {
+    setSprites([
+      {
+        id: 'target-right',
+        type: 'target',
+        position: Position.Top,
+        edgePositionValue: 0,
+        label: 'M'
+      },
+      {
+        id: 'source-top',
+        type: 'source',
+        position: Position.Right,
+        edgePositionValue: 0,
+        label: 'M'
+      }
+    ])
+  }, [])
+
   return (
     <EntityContext.Provider
       value={{
@@ -62,6 +84,7 @@ const EntityProvider = ({ children }: Props) => {
         setEdgePositionValue,
         setIsOpacity,
         sprites,
+        setSprites,
         onPopoverClick,
       }}
     >
