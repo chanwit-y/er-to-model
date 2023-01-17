@@ -7,25 +7,34 @@ import {
   Slider,
   Typography,
 } from "@mui/material";
-import React, { SyntheticEvent, useCallback, useState } from "react";
+import React, { Dispatch, SetStateAction, SyntheticEvent, useCallback, useState } from "react";
 import { FormGroup } from "../FormGroup";
+import { SpriteType } from "./@types";
 import { useEntity } from "./Context";
 
-export const SpriteDetail = () => {
-  const { setIsOpacity, edgePositionValue, setEdgePositionValue } = useEntity();
+type Props = {
+  id: string;
+  // setSprite: Dispatch<SetStateAction<SpriteType>>
+}
+
+export const SpriteDetail = ({ id }: Props) => {
+  const { setIsOpacity, currentSprite, setCurrentSprite } = useEntity();
   // const [handlePosition, setHandlePosition] = useState(0);
+
+  const current = currentSprite(id);
 
   const handleChangePosition = useCallback(
     (_: Event, value: number | number[], _2: number) => {
       setIsOpacity(true);
-      setEdgePositionValue(value as number);
+      // setSprite((prev) => ({...prev, edgePositionValue: Number(value) }));
+      setCurrentSprite({...current, edgePositionValue: Number(value)})
     },
-    [edgePositionValue]
+    [id, current.edgePositionValue]
   );
 
   const handleCommitedPosition = useCallback(
     (_: SyntheticEvent | Event, _2: number | number[]) => setIsOpacity(false),
-    [edgePositionValue]
+    [id, current.edgePositionValue]
   );
 
   return (
@@ -53,7 +62,7 @@ export const SpriteDetail = () => {
         <Slider
           size="small"
           defaultValue={0}
-          value={edgePositionValue}
+          value={current.edgePositionValue}
           aria-label="Small"
           valueLabelDisplay="auto"
           onChange={handleChangePosition}

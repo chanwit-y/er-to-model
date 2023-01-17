@@ -14,7 +14,7 @@ import { Toolbox } from "./Toolbox";
 import { Sprite } from "./Sprite";
 
 export const Detail = () => {
-  const { sprites, edgePositionValue, onPopoverClick } = useEntity();
+  const { sprites, onPopoverClick } = useEntity();
 
   return (
     <Box
@@ -24,25 +24,27 @@ export const Detail = () => {
       borderRadius={1}
       minWidth={100}
     >
-      {/* {sprites.map((s) => <Sprite {...s} />)} */}
+      {sprites.map((s) => <Sprite {...s} />)}
       {/* {handles.map((h) => h)} */}
-      {sprites.map((s) => <Handle
-        id={s.id}
+      {/* {sprites.map((s) => (<Handle
+        // key={s.id}
+        // id={s.id}
+        id="test"
         type={s.type}
         position={s.position}
-        style={{ 
-          top: `${s.edgePositionValue}%`, 
-          width: ".1rem", 
-          height: ".1rem", 
-          border: 1, 
-          borderColor: 'red', 
-          borderStyle: "solid", 
+        style={{
+          top: s.position === Position.Right ? `${s.edgePositionValue}%` : undefined,
+          width: ".1rem",
+          height: ".1rem",
+          border: 1,
+          borderColor: 'red',
+          borderStyle: "solid",
           backgroundColor: "#2096f3",
-         }}
+        }}
         onDoubleClick={(e) => onPopoverClick(e, <SpriteDetail />)}
       >
-        <Box position="relative" fontSize={6} sx={{transform: "translate(8px, -50%)"}}>{s.label}</Box>
-      </Handle>)}
+        <Box position="relative" fontSize={6} sx={{ transform: "translate(8px, -50%)" }}>{s.label}</Box>
+      </Handle>))} */}
 
       {/* <Handle
         id="target-right"

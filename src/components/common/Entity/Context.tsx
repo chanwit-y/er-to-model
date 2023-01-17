@@ -12,14 +12,17 @@ import {
   useMemo,
   useEffect,
 } from "react";
-import {  Position } from "reactflow";
+import { Position } from "reactflow";
 import { SpriteType } from "./@types";
 
 type OnPopoverClickType = (event: MouseEvent<HTMLButtonElement | HTMLDivElement | HTMLSpanElement>, children: JSX.Element) => void;
 
 type EntityContextType = {
-  edgePositionValue: number;
-  setEdgePositionValue: Dispatch<SetStateAction<number>>;
+  // edgePositionValue: number;
+  // setEdgePositionValue: Dispatch<SetStateAction<number>>;
+
+  currentSprite: (id: string) => SpriteType;
+  setCurrentSprite: (sprite: SpriteType) => void;
 
   onPopoverClick: OnPopoverClickType;
 
@@ -38,7 +41,7 @@ type Props = {
   children: ReactNode;
 };
 const EntityProvider = ({ children }: Props) => {
-  const [edgePositionValue, setEdgePositionValue] = useState(0);
+  // const [edgePositionValue, setEdgePositionValue] = useState(0);
   const [isOpacity, setIsOpacity] = useState(false);
   const [sprites, setSprites] = useState<SpriteType[]>([]);
 
@@ -54,6 +57,14 @@ const EntityProvider = ({ children }: Props) => {
   const popOverOpen = useMemo(() => Boolean(anchorEl), [anchorEl]);
   const popOverId = useMemo(() => popOverOpen ? "popover-handle" : undefined, [popOverOpen]);
 
+  const currentSprite = useCallback((id: string) => sprites.find(f => f.id === id), [sprites])
+
+  const setCurrentSprite = useCallback((sprite: SpriteType) => {
+    const index = sprites.findIndex(f => f.id === sprite.id);
+    setSprites([...sprites.slice(0, index), sprite, ...sprites.slice(index + 1, sprites.length)])
+  }, [sprites])
+
+
   // useEffect(() => {
   //   console.log(anchorEl)
   // }, [anchorEl])
@@ -63,14 +74,14 @@ const EntityProvider = ({ children }: Props) => {
       {
         id: 'target-right',
         type: 'target',
-        position: Position.Top,
+        position: Position.Right,
         edgePositionValue: 0,
         label: 'M'
       },
       {
         id: 'source-top',
         type: 'source',
-        position: Position.Right,
+        position: Position.Top,
         edgePositionValue: 0,
         label: 'M'
       }
@@ -80,8 +91,10 @@ const EntityProvider = ({ children }: Props) => {
   return (
     <EntityContext.Provider
       value={{
-        edgePositionValue,
-        setEdgePositionValue,
+        // edgePositionValue,
+        // setEdgePositionValue,
+        currentSprite,
+        setCurrentSprite,
         setIsOpacity,
         sprites,
         setSprites,

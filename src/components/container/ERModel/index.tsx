@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React, { useCallback, useMemo, useState } from "react";
 import ReactFlow, {
   addEdge,
@@ -8,7 +9,11 @@ import ReactFlow, {
   Edge,
   Node,
 } from "reactflow";
-import { Entity } from "../../common/Entity";
+// import { Entity } from "../../common/Entity";
+const Entity = dynamic(() => import('../../common/Entity').then((e) => e.Entity), {
+  ssr: false
+  // loading: () => 'Loading...',
+})
 
 const initNodes: Node[] = [
   {
